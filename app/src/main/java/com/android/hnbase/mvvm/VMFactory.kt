@@ -7,6 +7,7 @@ import com.android.hnbase.mvvm.model.TestModel
 import com.android.hnbase.mvvm.viewmodel.TestViewModel
 
 class VMFactory(val application: Application): ViewModelProvider.NewInstanceFactory()  {
+
     companion object {
 
         var INSTANCE:VMFactory?=null
@@ -19,6 +20,7 @@ class VMFactory(val application: Application): ViewModelProvider.NewInstanceFact
             return INSTANCE as VMFactory
         }
     }
+
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(TestViewModel::class.java)) {
             return TestViewModel(application, TestModel()) as T
