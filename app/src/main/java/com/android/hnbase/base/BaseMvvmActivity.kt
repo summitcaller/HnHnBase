@@ -64,6 +64,8 @@ abstract class BaseMvvmActivity<V:ViewDataBinding,VM: BaseViewModel<out BaseMode
         binding?.lifecycleOwner = this
         viewModel = createViewModel();
         viewModel?.let { lifecycle.addObserver(it) }
+
+        //绑定viewmodel和binding
         viewModelId = onBindViewModelId()
         binding?.setVariable(viewModelId,viewModel)
     }
