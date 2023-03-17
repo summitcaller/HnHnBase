@@ -16,3 +16,4 @@ rootProject.name = "HnBase"
 include ':app'
 include ':common'
 include ':platform'
+include ':nativelib'
