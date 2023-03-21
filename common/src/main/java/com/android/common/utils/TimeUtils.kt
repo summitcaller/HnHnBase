@@ -25,6 +25,15 @@ class TimeUtils {
      */
     fun countDownSeconds(timeLen:Int, listener: CountDownListener, isEvery:Boolean, isCountBack:Boolean){
         var count = timeLen
+        if (isEvery) {
+            if (isCountBack) {
+                listener.onCountDown(count--,null,count == 0)
+            }else{
+                listener.onCountDown(timeLen - (count--),null,count == 0)
+            }
+        }else{
+            count--
+        }
         disposable = Observable.interval(1,TimeUnit.SECONDS)
             .subscribe {
                 Log.i(TAG,"countDownSeconds it = $it")
