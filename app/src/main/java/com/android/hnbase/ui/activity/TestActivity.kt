@@ -10,12 +10,14 @@ import com.android.hnbase.databinding.TestActivityBinding
 import com.android.hnbase.di.repository.UserRepository
 import com.android.hnbase.mvvm.viewmodel.TestViewModel
 import com.android.hnbase.rxjava.RxjavaHelper
+import com.android.platform.retrofit.RtHelper
 import com.example.smallhaique.viewmodel.factory.VMFactory
 
 class TestActivity:BaseMvvmActivity<TestActivityBinding,TestViewModel>() {
 
     override fun initView() {
         RxjavaHelper().testDo()
+        RtHelper().doRt()
     }
 
     override fun getBindLayoutId() = R.layout.test_activity

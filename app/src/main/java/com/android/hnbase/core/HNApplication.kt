@@ -36,5 +36,5 @@ class HNApplication:Application(),AppComponents {
 
     override fun getDirector(): Director? = director
 
-    override fun getContext(): Context? = this
+    override fun getContext(): Context = this
 }
