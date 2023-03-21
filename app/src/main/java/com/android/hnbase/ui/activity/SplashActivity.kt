@@ -52,5 +52,6 @@ class SplashActivity:BaseActivity() {
         Logger.ihn(TAG,"toOther()")
         val intent = Intent(this,TestActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }
