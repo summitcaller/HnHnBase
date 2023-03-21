@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import java.util.concurrent.TimeUnit
 
 class TimeUtils {
-    val TAG = javaClass.simpleName
+    val TAG = TimeUtils::class.simpleName
     var disposable:Disposable? = null
     fun countDownSeconds(timeLen:Int, listener: CountDownListener, isEvery:Boolean, isCountBack:Boolean){
         var count = timeLen

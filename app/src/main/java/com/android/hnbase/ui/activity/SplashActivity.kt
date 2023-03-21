@@ -40,7 +40,7 @@ class SplashActivity:BaseActivity() {
                     }
                 }
             }
-        },true,false)
+        },true,true)
         binding!!.nextButton.text = "(10S) "+ resources.getString(R.string.next)
     }
 
