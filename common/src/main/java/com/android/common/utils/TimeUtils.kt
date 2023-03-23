@@ -83,4 +83,8 @@ class TimeUtils {
         fun onCountDown(timeLen:Int,thing:Any?,isOver:Boolean)
 
     }
+
+    public fun stop(){
+        disposable?.dispose()
+    }
 }

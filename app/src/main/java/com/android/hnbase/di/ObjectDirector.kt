@@ -26,6 +26,8 @@ class ObjectDirector(val appComponents: AppComponents):Director {
 
     /**
      * 获取类对象，需要注意的是所有注册的类中不能有多个public方法返回相同的类型
+     * @param clazz Class<T>? 需要的类型
+     * @return T 泛型对象
      */
     override fun <T> getInstance(clazz: Class<T>?): T {
         if (providers.isEmpty()) {

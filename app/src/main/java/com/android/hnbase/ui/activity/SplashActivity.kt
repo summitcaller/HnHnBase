@@ -30,7 +30,8 @@ class SplashActivity:BaseActivity() {
         splashAnimA.start()
         splashAnim.start()
         splashAnimAWelcome.start()
-        TimeUtils().countDownSeconds(10,object:TimeUtils.CountDownListener{
+        val tu = TimeUtils()
+        tu.countDownSeconds(10,object:TimeUtils.CountDownListener{
             override fun onCountDown(timeLen: Int, thing: Any?, isOver:Boolean) {
                 Logger.ihn(TAG,"timeLen = $timeLen")
                 runOnUiThread {
@@ -42,6 +43,10 @@ class SplashActivity:BaseActivity() {
             }
         },true,true)
         binding!!.nextButton.text = "(10S) "+ resources.getString(R.string.next)
+        binding!!.nextButton.setOnClickListener {
+            toOther()
+            tu.stop()
+        }
     }
 
     override fun onResume() {
