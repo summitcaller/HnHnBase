@@ -106,7 +106,7 @@ public class SearchRadarView extends View {
         canvas.drawArc(rectF,location,SIZE_CRICLE,true,mPaint);
         for (int i = 0; i < boWenNum+1; i++) {
             if (distance*i+movePosition< radis){
-                float alpha = 100.0f*(radis - distance*i - movePosition)/radis+10;
+                float alpha = 100.0f*(radis - distance*i - movePosition)/radis;
                 if (alpha>100) {
                     alpha =100;
                 }
