@@ -20,7 +20,6 @@ open class BaseActivity:AppCompatActivity(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 val window = window
@@ -33,5 +32,21 @@ open class BaseActivity:AppCompatActivity(){
         } catch (e: Exception) {
             Logger.ehn(TAG, "onCreate, failed hiding title bar")
         }
+    }
+
+    /**
+     * 用户手动离开当前activity，会调用该方法，比如用户主动切换任务，短按home进入桌面等。系统自动切换activity不会调用此方法，如来电，灭屏等。
+     */
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+        Logger.ihn(TAG,"onUserLeaveHint()")
+    }
+
+    /**
+     * 每当Key，Touch,Trackball事件分发到当前Activity就会被调用。如果你想当你的Activity在运行的时候，能够得知用户正在与你的设备交互，你可以override该方法。
+     */
+    override fun onUserInteraction() {
+        super.onUserInteraction()
+        Logger.ihn(TAG,"onUserInteraction()")
     }
 }

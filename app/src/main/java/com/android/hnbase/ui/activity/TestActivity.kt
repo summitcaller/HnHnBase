@@ -1,6 +1,9 @@
 package com.android.hnbase.ui.activity
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.android.hnbase.BR
 import com.android.hnbase.R
@@ -24,14 +27,31 @@ class TestActivity:BaseMvvmActivity<TestActivityBinding,TestViewModel>() {
 
     override fun onBindViewModel() = TestViewModel::class.java
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun initData() {
         Log.i(TAG,"initData()")
         HNApplication.getInstance()!!.getDirector()!!.getInstance(UserRepository::class.java).testUser()
+        viewModel?.startSLD?.observe(this, Observer {
+            if (it){
+                startS()
+            }else{
+                stopS()
+            }
+        })
     }
 
     override fun onBindViewModelId() = BR.tesVM
 
     override fun onBindViewModelFactory(): ViewModelProvider.NewInstanceFactory {
         return VMFactory.getInstance(application)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun startS(){
+        binding?.searchV?.startView()
+    }
+
+    fun stopS(){
+        binding?.searchV?.stopView()
     }
 }

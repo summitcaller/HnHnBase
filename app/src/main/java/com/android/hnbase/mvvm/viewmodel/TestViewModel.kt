@@ -11,6 +11,7 @@ import com.android.hnbase.mvvm.model.TestModel
 
 class TestViewModel(application: Application,model: TestModel):BaseViewModel<TestModel>(application,model) {
     val textLiveData = MutableLiveData<Long>(0)
+    val startSLD :MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     private var isFocus = false;
     fun onTest(){
         textLiveData.value = System.currentTimeMillis()
@@ -25,5 +26,13 @@ class TestViewModel(application: Application,model: TestModel):BaseViewModel<Tes
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     fun onCreate(){
         Log.i(TAG,"lifecycle onCreate()")
+    }
+
+    fun startSearch(){
+        startSLD.value = true
+    }
+
+    fun stopSearch(){
+        startSLD.value = false
     }
 }
