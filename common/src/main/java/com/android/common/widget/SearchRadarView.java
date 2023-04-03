@@ -42,6 +42,7 @@ public class SearchRadarView extends View {
     int radis;
     SweepGradient mSweepGradient;
     Matrix matrix;
+    boolean isStart = false;
 
     public int getCircleNum() {
         return boWenNum;
@@ -98,8 +99,6 @@ public class SearchRadarView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Log.e(TAG,"onDraw");
-        canvas.save();
         matrix.setRotate(location, radis, radis);
         mSweepGradient.setLocalMatrix(matrix);
         mPaint.setShader(mSweepGradient);
@@ -114,9 +113,6 @@ public class SearchRadarView extends View {
                 canvas.drawCircle(radis,radis,distance*i+movePosition,circlePaint);
             }
         }
-//        circlePaint.setAlpha(20);
-//        canvas.drawCircle(radis,radis,radis,circlePaint);
-//        canvas.restore();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -129,14 +125,16 @@ public class SearchRadarView extends View {
         radis = Math.min(heightSize, widthSize)/2;
         rectF = new RectF(0,0, widthSize,heightSize);
         Log.d(TAG,"heightSize ="+heightSize+",widthSize = " + widthSize);
-//        RadialGradient rg = new RadialGradient(radis,radis,radis,mContext.getColor(R.color.purple_200),mContext.getColor(R.color.white),Shader.TileMode.MIRROR);
-//        circlePaint.setShader(rg);
         distance = radis/boWenNum;
 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void startView(){
+        if (isStart) {
+            return;
+        }
+
         Log.d(TAG,"startView()");
         if (myTask != null) {
             myTask.cancel();
@@ -158,13 +156,19 @@ public class SearchRadarView extends View {
             timer = new Timer();
         }
         timer.schedule(myTask,0,10);
+        isStart = true;
     }
 
     public void stopView(){
+        if (!isStart) {
+            return;
+        }
+
         Log.d(TAG,"stopView()");
         if (myTask != null) {
             myTask.cancel();
         }
+        isStart = false;
     }
 
 }

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.common.Logger
 
@@ -16,8 +17,9 @@ import com.android.common.Logger
  * Base activity
  */
 open class BaseActivity:AppCompatActivity(){
-    val TAG = javaClass::class.java.simpleName
-
+    val TAG = this::class.java.simpleName
+    var isInteralBack = false
+    var isLeaveListener = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {
@@ -39,7 +41,11 @@ open class BaseActivity:AppCompatActivity(){
      */
     override fun onUserLeaveHint() {
         super.onUserLeaveHint()
+        if (!isLeaveListener) {
+            return
+        }
         Logger.ihn(TAG,"onUserLeaveHint()")
+        Toast.makeText(this,"应用进入后台运行!",Toast.LENGTH_LONG).show()
     }
 
     /**
@@ -49,4 +55,17 @@ open class BaseActivity:AppCompatActivity(){
         super.onUserInteraction()
         Logger.ihn(TAG,"onUserInteraction()")
     }
+
+    override fun onBackPressed() {
+        if (isInteralBack){
+            showDialog()
+        }else{
+            super.onBackPressed()
+        }
+    }
+
+    open fun showDialog(){
+
+    }
+
 }

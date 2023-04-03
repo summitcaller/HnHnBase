@@ -8,6 +8,8 @@
         <entry key="app/src/main/res/layout/login_activiy.xml" value="0.1375" />
         <entry key="app/src/main/res/layout/splash_activity.xml" value="0.1375" />
         <entry key="app/src/main/res/layout/test_activity.xml" value="0.2916666666666667" />
+        <entry key="common/src/main/res/drawable/danale_loading_shape.xml" value="0.251" />
+        <entry key="common/src/main/res/layout/common_dialog_layout.xml" value="0.3390625" />
       </map>
     </option>
   </component>

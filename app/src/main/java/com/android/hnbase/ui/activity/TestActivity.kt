@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.android.common.widget.CommonDialog
 import com.android.hnbase.BR
 import com.android.hnbase.R
 import com.android.hnbase.base.BaseMvvmActivity
@@ -38,6 +39,8 @@ class TestActivity:BaseMvvmActivity<TestActivityBinding,TestViewModel>() {
                 stopS()
             }
         })
+        isInteralBack = true
+        isLeaveListener = true
     }
 
     override fun onBindViewModelId() = BR.tesVM
@@ -53,5 +56,18 @@ class TestActivity:BaseMvvmActivity<TestActivityBinding,TestViewModel>() {
 
     fun stopS(){
         binding?.searchV?.stopView()
+    }
+
+    override fun showDialog() {
+        val dialog = CommonDialog(this).setTitle("确定要退出吗？")
+
+        dialog.setOnClickDialog(object :CommonDialog.OnClickDialog{
+                override fun onOk() {
+                    finish()
+                }
+                override fun onCancel() {
+                    dialog.dismiss()
+                }
+            }).show()
     }
 }
