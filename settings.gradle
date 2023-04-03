@@ -24,18 +24,8 @@ evaluate(new File(
         'my_flutter_module/.android/include_flutter.groovy'
 ))
 
-//evaluate(new File(
-//        settingsDir.parentFile,
-//        'testflutter/.android/include_flutter.groovy'
-//))
 include ':app'
 include ':common'
 include ':platform'
 include ':nativelib'
-//include ':testflutter'
-//project(':testflutter').projectDir = new File('../testflutter')
-//include ':my_flutter_module'
-//project(':my_flutter_module').projectDir = new File('../my_flutter_module')
-
-
 include ':my_flutter_module'
